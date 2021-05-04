@@ -1,7 +1,7 @@
 <template>
   <div id="error-page">
     <h1>Not Found</h1>
-    <p>The requested URL was not found on this server.</p>
+    <p>The requested URL was not found on this server</p>
     <hr />
     <span>Apache/2.4.18 (Ubuntu) Server at 10.60.8.118 port 80</span>
   </div>
