@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-export default async function ({ req }) {
-  const ip = req.connection.remoteAddress
-  console.log('<<<MEU IP:', ip)
-  const { data } = await axios.get(
-    `https://api.ipgeolocation.io/ipgeo?apiKey=187f062c0c074f89b2a706343f6d69a8&ip=${ip}`
-  )
-  if (data.country_name !== 'Brazil') {
-    return error({ message: 'Not allowed', statusCode: '404' })
+export default async function (context) {
+  if (process.server) {
+    const req = context.req
+    const headers = req && req.headers ? Object.assign({}, req.headers) : {}
+    const xForwardedFor = headers['x-forwarded-for']
+    const xRealIp = headers['x-real-ip']
+    console.log('FOWARDED:', xForwardedFor)
+    console.log('REAL IP:', xRealIp)
   }
 }
